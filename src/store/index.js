@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import {LoginAPI} from "@/components/Login/LoginAPI"
+import {MoviesAPI} from "@/components/Movie/MoviesAPI"
 
 Vue.useAttrs(Vuex);
 
@@ -77,6 +78,15 @@ export default new Vuex.Store({
              }catch(e){
                 commit('setError', e.message);
              }
-         }
+         },
+         async fetchMovies({commit, state}){
+             try {
+                 const movies = await MoviesAPI.fetchMovies();
+                 commit('setMovies', movies);
+             } catch (e) {
+                 commit('setError', e.message);
+             }
+         },
+         //async 
      }
 })

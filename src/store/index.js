@@ -34,5 +34,11 @@ export default new Vuex.Store({
          addFavourite: (state, payload) => {
              state.profile.favourites = payload;
          }
+     },
+     getters: {
+
+     },
+     actions: {
+         
      }
 })

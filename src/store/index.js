@@ -87,6 +87,20 @@ export default new Vuex.Store({
                  commit('setError', e.message);
              }
          },
-         //async 
+         async addFavourite({commit, state}, payload){
+             const {profile} = state;
+             try {
+                const favourite = {
+                    movieID: payload,
+                    userID: profile.id
+                }
+                const newFavourites = await MoviesAPI.addFavourite(favourite);
+                commit('addFavourite', newFavourites);
+             } catch (e) {
+                 commit('setError', e.message)
+             }
+             
+             
+         }
      }
 })
